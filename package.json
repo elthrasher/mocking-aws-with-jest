@@ -1,0 +1,48 @@
+{
+  "name": "mocking-aws-with-jest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint . --ext=.js,.ts",
+    "pretest": "npm run lint",
+    "test": "jest --coverage"
+  },
+  "author": "Matt Morgan",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.61",
+    "@types/jest": "^26.0.10",
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "jest": "^26.4.2",
+    "prettier": "^2.1.1",
+    "ts-jest": "^26.3.0",
+    "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.742.0"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>"
+    ],
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/*.spec.ts"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.ts",
+      "!**/*.d.ts",
+      "!cdk.out/**/*",
+      "!bin/**/*",
+      "!webpack.config.ts"
+    ]
+  }
+}
