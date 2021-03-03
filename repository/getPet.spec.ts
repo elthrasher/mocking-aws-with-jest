@@ -6,7 +6,7 @@ const db = new DocumentClient();
 describe('getPet method', () => {
   test('Save Fluffy', async () => {
     const fluffy = { legCount: 4, likesIceCream: true, name: 'Fluffy', PK: 'Fluffy' };
-    awsSdkPromiseResponse.mockReturnValueOnce({ Item: fluffy });
+    awsSdkPromiseResponse.mockReturnValueOnce(Promise.resolve({ Item: fluffy }));
     const pet = await getPet('Pets', 'Fluffy');
     expect(db.get).toHaveBeenCalledWith({ TableName: 'Pets', Key: { PK: 'Fluffy' } });
     expect(pet).toEqual(fluffy);
