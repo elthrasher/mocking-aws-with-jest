@@ -1,4 +1,4 @@
-import { DocumentClient, awsSdkPromiseResponse } from '../__mocks__/aws-sdk/clients/dynamodb';
+import { awsSdkPromiseResponse, DocumentClient } from '../__mocks__/aws-sdk/clients/dynamodb';
 import { getPet } from './getPet';
 
 const db = new DocumentClient();
@@ -16,7 +16,9 @@ describe('getPet method', () => {
     try {
       await getPet('Pets', 'Rover');
     } catch (e) {
-      expect(e.message).toBe(`Couldn't find Rover!`);
+      if (e instanceof Error) {
+        expect(e.message).toBe(`Couldn't find Rover!`);
+      }
     }
   });
   test(`DynamoDB doesn't work`, async () => {
@@ -25,7 +27,9 @@ describe('getPet method', () => {
     try {
       await getPet('Pets', 'Rover');
     } catch (e) {
-      expect(e.message).toBe(`some error`);
+      if (e instanceof Error) {
+        expect(e.message).toBe(`some error`);
+      }
     }
   });
 });
